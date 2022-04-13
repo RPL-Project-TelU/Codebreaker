@@ -15,6 +15,8 @@ import java.io.File;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -199,41 +201,60 @@ public class Model extends JPanel implements ActionListener{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    class TAdapter extends KeyAdapter{
-        public void keyPressed(KeyEvent e){
-            int key = e.getKeyCode();
+    // extends KeyAdapter to listen every keyboard events
+    class TAdapter extends KeyAdapter {
+        // TODO: define Map<Integer, Runnable> variable to implement table driven
+        /*
+        // Runnable is lambda function
+        * KeyEvent.VK_DOWN : () -> {
+                req_dx = 0;
+                req_dy = 1;
+            }
+        * */
+        private final Map<Integer, Runnable> movements = new HashMap<>();
 
-            if ( inGame == GameState.IsPlayed){
-                switch (key){
-                    case (KeyEvent.VK_UP):
-                        req_dx = 0;
-                        req_dy = -1;
-                        break;
-                    case (KeyEvent.VK_DOWN):
-                        req_dx = 0;
-                        req_dy = 1;
-                        break;
-                    case (KeyEvent.VK_LEFT):
-                        req_dx = -1;
-                        req_dy = 0;
-                        break;
-                    case (KeyEvent.VK_RIGHT):
-                        req_dx = 1;
-                        req_dy = 0;
-                        break;
-                    case (KeyEvent.VK_ESCAPE):
-                        if (timer.isRunning()){
-                            inGame = GameState.NotPlayed;
-                        }
-                }
-            } else if (inGame == GameState.NotPlayed ){
-                if (key == KeyEvent.VK_SPACE){
-                    inGame = GameState.IsPlayed;
-                    initGame();
-                }
+        @Override
+        public void keyPressed(KeyEvent e) {
+            int key = e.getKeyCode();
+            Runnable button = movements.get(key);
+
+            if (inGame == GameState.IsPlayed && button != null) {
+                // call lambda function (Runnable)
+                button.run();
+            } else if (inGame == GameState.NotPlayed) {
+                button.run();
             }
         }
-    
+
+        // table driven
+        private void movementsMapping() {
+            movements.put(KeyEvent.VK_UP, () -> {
+                req_dx = 0;
+                req_dy = -1;
+            });
+
+            movements.put(KeyEvent.VK_DOWN, () -> {
+                req_dx = 0;
+                req_dy = 1;
+            });
+
+            movements.put(KeyEvent.VK_LEFT, () -> {
+                req_dx = -1;
+                req_dy = 0;
+            });
+
+            movements.put(KeyEvent.VK_RIGHT, () -> {
+                req_dx = 1;
+                req_dy = 0;
+            });
+
+            movements.put(KeyEvent.VK_ESCAPE, () -> inGame = GameState.NotPlayed);
+
+            movements.put(KeyEvent.VK_SPACE, () -> {
+                inGame = GameState.IsPlayed;
+                initGame();
+            });
+        }
     }
     
 }
