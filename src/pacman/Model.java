@@ -91,20 +91,25 @@ public class Model extends JPanel implements ActionListener{
 
     private void loadImage(){
         //Precondition assets files exist
-        assert new File("/assets/").exists();
-        assert new File("/assets/hearth.png").exists();
-        assert new File("/assets/ghost.png").exists();
-        assert new File("/assets/up.gif").exists();
-        assert new File("/assets/down.gif").exists();
-        assert new File("/assets/left.gif").exists();
-        assert new File("/assets/right.gif").exists();
-
-        heart = new ImageIcon("/assets/hearth.png").getImage();
-        ghost = new ImageIcon("/assets/ghost.png").getImage();
-        up = new ImageIcon("/assets/up.gif").getImage();
-        down = new ImageIcon("/assets/down.gif").getImage();
-        left = new ImageIcon("/assets/left.gif").getImage();
-        right = new ImageIcon("/assets/right.gif").getImage();
+        try {
+            assert new File("src/assets/").exists();
+            assert new File("src/assets/hearth.png").exists();
+            assert new File("src/assets/ghost.png").exists();
+            assert new File("src/assets/up.gif").exists();
+            assert new File("src/assets/down.gif").exists();
+            assert new File("src/assets/left.gif").exists();
+            assert new File("src/assets/right.gif").exists();
+        } catch (Exception ex){
+            //throw exception saja biar ngebrick, kalo gak gambarnya gak ada
+            throw ex;
+        } finally {
+            heart = new ImageIcon("src/assets/hearth.png").getImage();
+            ghost = new ImageIcon("src/assets/ghost.png").getImage();
+            up = new ImageIcon("src/assets/up.gif").getImage();
+            down = new ImageIcon("src/assets/down.gif").getImage();
+            left = new ImageIcon("src/assets/left.gif").getImage();
+            right = new ImageIcon("src/assets/right.gif").getImage();
+        }
     }
 
     private void initVariables(){
