@@ -41,7 +41,7 @@ public class Model extends JPanel implements ActionListener{
     private EntityState dying = EntityState.Alive;
     
     //Game config attribut(s)
-    private final Config CONFIG = new Config(24,15,12,6);
+    Config<Integer> CONFIG = new Config<>(24,15,12,6);
     
         
     //Assets attributes

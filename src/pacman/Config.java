@@ -8,7 +8,7 @@ package pacman;
  *
  * @author acer
  */
-public class Config{
+public class Config<T>{
     
     /*
     TO DO : Serilization and Deserilization Config
@@ -17,10 +17,10 @@ public class Config{
     private int BLOCK_SIZE;
     private int N_BLOCKS;
     private int SCREEN_SIZE;
-    private int MAX_GHOST;
+    private T MAX_GHOST;
     private int PACMAN_SPEED;
 
-    public Config(int BLOCK_SIZE, int N_BLOCKS, int MAX_GHOST, int PACMAN_SPEED) {
+    public Config(int BLOCK_SIZE, int N_BLOCKS, T MAX_GHOST, int PACMAN_SPEED) {
         this.BLOCK_SIZE = BLOCK_SIZE;
         this.N_BLOCKS = N_BLOCKS;
         this.SCREEN_SIZE = BLOCK_SIZE * N_BLOCKS;
@@ -54,7 +54,7 @@ public class Config{
     /**
      * @return the MAX_GHOST
      */
-    public int getMAX_GHOST() {
+    public T getMAX_GHOST() {
         return MAX_GHOST;
     }
 
