@@ -4,37 +4,12 @@
  * and open the template in the editor.
  */
 package pacman;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
 /**
  *
  * @author acer
  */
 public class Config<T>{
-    
-    //parsing
-    public static void parsing(){
-        ClassLoader classLoader = new LevelParsing().getClass().getClassLoader();
-        String fileName = "src/level.json";
-        File file = new File(classLoader.getResource(fileName).getFile());
-
-        JSONParser parser = new JSONParser();
-
-        try{
-                FileReader reader = new FileReader(file.getAbsolutePath());
-                Object obj = parser.parse(reader);
-                JSONObject jsonObj = (JSONObject) obj;
-                JSONArray level = (JSONArray) jsonObj.get("level");  
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-    }
     
     private int BLOCK_SIZE;
     private int N_BLOCKS;

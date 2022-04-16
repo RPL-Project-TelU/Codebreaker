@@ -41,6 +41,9 @@ public class Model extends JPanel implements ActionListener{
     private final Font smallFont = new Font("Arial", Font.BOLD, 14);
     private GameState inGame = GameState.NotPlayed;
     private EntityState dying = EntityState.Alive;
+    private final int BLOCK_SIZE = 24;
+    private final int N_BLOCKS = 15;
+    private final int SCREEN_SIZE = N_BLOCKS * BLOCK_SIZE;
     
     //Game config attribut(s)
     Config<Integer> CONFIG = new Config<>(24,15,12,6);
@@ -153,8 +156,9 @@ public class Model extends JPanel implements ActionListener{
         Graphics2D g2d = (Graphics2D) g;
         g2d.setBackground(Color.BLACK);
         g2d.fillRect(0, 0, (int)d.getWidth(), (int)d.getHeight());
+    }
 
-         private void drawMaze(Graphics2D g2d) {
+    private void drawMaze(Graphics2D g2d){
 
         short i = 0;
         int x, y;
@@ -162,10 +166,10 @@ public class Model extends JPanel implements ActionListener{
         for (y = 0; y < SCREEN_SIZE; y += BLOCK_SIZE) {
             for (x = 0; x < SCREEN_SIZE; x += BLOCK_SIZE) {
 
-                g2d.setColor(new Color(0,72,251));
+                g2d.setColor(new Color(0,72,100));
                 g2d.setStroke(new BasicStroke(5));
                 
-                if ((levelData[i] == 0)) { 
+                if ((level[i] == 0)) { 
                 	g2d.fillRect(x, y, BLOCK_SIZE, BLOCK_SIZE);
                  }
 
@@ -195,17 +199,19 @@ public class Model extends JPanel implements ActionListener{
                 i++;
             }
         }
+    }
+
              
         private void drawScore(Graphics2D g) {
-        g.setFont(smallFont);
-        g.setColor(new Color(5, 181, 79));
-        String s = "Score: " + score;
-        g.drawString(s, SCREEN_SIZE / 2 + 96, SCREEN_SIZE + 16);
+                g.setFont(smallFont);
+                g.setColor(new Color(5, 181, 79));
+                String s = "Score: " + score;
+                g.drawString(s, SCREEN_SIZE / 2 + 96, SCREEN_SIZE + 16);
 
-        for (int i = 0; i < lives; i++) {
-            g.drawImage(heart, i * 28 + 8, SCREEN_SIZE + 1, this);
-        }
-    }
+                for (int i = 0; i < lives; i++) {
+                    g.drawImage(heart, i * 28 + 8, SCREEN_SIZE + 1, this);
+                }
+            }
 
         if( inGame == GameState.IsPlayed){
             //TODO playGame(g2d);
@@ -214,6 +220,11 @@ public class Model extends JPanel implements ActionListener{
         }
 
         Toolkit.getDefaultToolkit().sync();
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
     }
 
