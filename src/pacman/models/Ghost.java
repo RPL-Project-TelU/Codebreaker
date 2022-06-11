@@ -3,14 +3,14 @@ import java.awt.Image;
 import java.util.Objects;
 
 public class Ghost extends Character{
-    private Image image;
+    public static Image image;
 
 
     public Ghost() {
     }
 
-    public Ghost(Image image) {
-        this.image = image;
+    public Ghost(int x, int y, int dx, int dy, int speed){
+        super(x, y, dx, dy, speed);
     }
 
     public Image getImage() {

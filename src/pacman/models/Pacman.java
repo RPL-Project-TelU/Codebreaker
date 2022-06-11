@@ -3,18 +3,14 @@ import java.awt.Image;
 import java.util.Objects;
 
 public class Pacman extends Character {
-    private Image up, down, left, right;
+    public static Image up, down, left, right;
 
 
     public Pacman() {
     }
 
-
-    public Pacman(Image up, Image down, Image left, Image right) {
-        this.up = up;
-        this.down = down;
-        this.left = left;
-        this.right = right;
+    public Pacman(int x, int y, int dx, int dy, int speed){
+        super(x, y, dx, dy, speed);
     }
 
     public Image getUp() {
