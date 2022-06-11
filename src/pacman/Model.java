@@ -202,16 +202,16 @@ public class Model extends JPanel implements ActionListener{
     }
 
              
-        private void drawScore(Graphics2D g) {
-                g.setFont(smallFont);
-                g.setColor(new Color(5, 181, 79));
-                String s = "Score: " + score;
-                g.drawString(s, SCREEN_SIZE / 2 + 96, SCREEN_SIZE + 16);
+    private void drawScore(Graphics2D g) {
+        g.setFont(smallFont);
+        g.setColor(new Color(5, 181, 79));
+        String s = "Score: " + score;
+         g.drawString(s, SCREEN_SIZE / 2 + 96, SCREEN_SIZE + 16);
 
-                for (int i = 0; i < lives; i++) {
-                    g.drawImage(heart, i * 28 + 8, SCREEN_SIZE + 1, this);
-                }
+        for (int i = 0; i < lives; i++) {
+            g.drawImage(heart, i * 28 + 8, SCREEN_SIZE + 1, this);
             }
+        
 
         if( inGame == GameState.IsPlayed){
             //TODO playGame(g2d);
@@ -220,12 +220,6 @@ public class Model extends JPanel implements ActionListener{
         }
 
         Toolkit.getDefaultToolkit().sync();
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     }
 
     private void continueLevel(){
