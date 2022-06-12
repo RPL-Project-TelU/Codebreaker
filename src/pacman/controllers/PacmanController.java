@@ -43,7 +43,15 @@ public class PacmanController {
     public void initGame(){
         service.initGame();
     }
+    
+    public void initLevel(){
+        service.initLevel();
+    }
 
+    public short[] getScreenData(){
+        return service.getScreenData();
+    }
+    
     public void continueLevel(){
         service.continueLevel();
     }

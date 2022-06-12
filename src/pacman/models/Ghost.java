@@ -45,7 +45,12 @@ public class Ghost extends Character{
     @Override
     public String toString() {
         return "{" +
-            " image='" + getImage() + "'" +
+            " x='" + getX() + "'\n" +
+            ", y='" + getY() + "'\n" +
+            ", dx='" + getDx() + "'\n" +
+            ", dy='" + getDy() + "'\n" +
+            ", speed='" + getSpeed() + "'\n" +
+            " image='" + getImage() + "'\n" +
             "}";
     }
 

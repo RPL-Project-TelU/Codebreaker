@@ -7,6 +7,7 @@ public class Pacman extends Character {
 
 
     public Pacman() {
+        super.setSpeed(6);
     }
 
     public Pacman(int x, int y, int dx, int dy, int speed){

@@ -31,9 +31,10 @@ public class PacmanService {
     private short[] screenData;
 
     public PacmanService(){
-        ghosts = new Ghost[MAX_GHOSTS]; 
-        for (Ghost g : ghosts){
-            g = new Ghost();
+        ghosts = new Ghost[MAX_GHOSTS];
+        screenData = new short[ScreenSettings.N_BLOCKS * ScreenSettings.N_BLOCKS];
+        for (int i=0; i < MAX_GHOSTS; i++){
+            ghosts[i] = new Ghost();
         }
         g_req_dx = new int[4];
         g_req_dy = new int[4];
@@ -56,8 +57,20 @@ public class PacmanService {
     public void initGame(){
         lives = 3;
         score = 0;
+        initLevel();
         N_GHOSTS = 6;
         currentSpeed = 3;
+    }
+    
+    public void initLevel(){
+        int i;
+        
+        for (i = 0; i < ScreenSettings.N_BLOCKS * ScreenSettings.N_BLOCKS; i++) {
+            screenData[i] = (short) Level.levels[0][i];
+            //System.out.println(screenData[i]);
+        }
+
+        continueLevel();
     }
 
     public int getScore(){
@@ -70,12 +83,14 @@ public class PacmanService {
         short ch;
 
         if (pacman.getX() % ScreenSettings.BLOCK_SIZE == 0 && pacman.getY() % ScreenSettings.BLOCK_SIZE == 0) {
+            //System.out.println("service.movePacman ok");
             // Get block posision representation in array
             pos = pacman.getX() / ScreenSettings.BLOCK_SIZE + 
                 ScreenSettings.N_BLOCKS * (int) (pacman.getY() / ScreenSettings.BLOCK_SIZE);
             ch = screenData[pos];
-
+            //System.out.println("service.movePacman ok" +ch +" x="+pacman.getX());
             if ((ch & 16) != 0) {
+                //System.out.println("service.movePacman ndak");
                 screenData[pos] = (short) (ch & 15);
                 score++;
             }
@@ -99,6 +114,7 @@ public class PacmanService {
                 pacman.setDy(0);
             }
         } 
+        //System.out.println("Warning something is wrong!"+pacman.getSpeed());
         pacman.updatePos();
     }
 
@@ -108,7 +124,6 @@ public class PacmanService {
 
         int pos;
         int count;
-        // TODO how to implement ghost moving
 
         // Iterate through all ghost
         for (int i = 0; i < N_GHOSTS; i++) {
@@ -122,7 +137,8 @@ public class PacmanService {
                 + ScreenSettings.N_BLOCKS * (int) (ghosts[i].getY() / ScreenSettings.BLOCK_SIZE);
 
                 count = 0;
-
+                //System.out.println(ScreenSettings.BLOCK_SIZE);
+                //System.out.println(screenData[pos]);
                 if ((screenData[pos] & 1) == 0 && ghosts[i].getDx() != 1) {
                     g_req_dx[count] = -1;
                     g_req_dy[count] = 0;
@@ -152,10 +168,13 @@ public class PacmanService {
                     if ((screenData[pos] & 15) == 15) {
                         ghosts[i].setDx(0);
                         ghosts[i].setDy(0);
+                        //System.out.println("count is 0 and true"+ghosts[i].getDy()+" and "+ghosts[i].getDx());
                     } else {
-                        ghosts[i].setDx(-ghosts[i].getDx());
-                        ghosts[i].setDy(-ghosts[i].getDy());
+                        ghosts[i].setDx(-1 * ghosts[i].getDx());
+                        ghosts[i].setDy(-1 * ghosts[i].getDy());
+                        //System.out.println("count is 0 and else"+ghosts[i].getDy()+" and "+ghosts[i].getDx());
                     }
+                    
 
                 } else {
 
@@ -167,6 +186,8 @@ public class PacmanService {
 
                     ghosts[i].setDx(g_req_dx[count]);
                     ghosts[i].setDy(g_req_dy[count]);
+                    //System.out.println(ghosts[i].getY()+" and "+ghosts[i].getX());
+                    //System.out.println("count is else"+ghosts[i].getDy()+" and "+ghosts[i].getDx());
 
                 }
 
@@ -188,7 +209,7 @@ public class PacmanService {
 
     	int dx = 1;
         int random;
-
+        //System.out.println("Continue level engage"+pacman.getX());
         for (int i = 0; i < N_GHOSTS; i++) {
 
             ghosts[i].setY(4 * ScreenSettings.BLOCK_SIZE); //start position

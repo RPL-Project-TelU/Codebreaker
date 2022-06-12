@@ -88,8 +88,9 @@ public class Character {
     }
 
     public void updatePos(){
-        y = y + speed * dy;
-        x = x + speed * dx;
+        //System.out.println(this.toString());
+        y = y + (speed * dy);
+        x = x + (speed * dx);
     }
 
     @Override
