@@ -14,35 +14,35 @@ public class Pacman extends Character {
     }
 
     public Image getUp() {
-        return this.up;
+        return Pacman.up;
     }
 
     public void setUp(Image up) {
-        this.up = up;
+        Pacman.up = up;
     }
 
     public Image getDown() {
-        return this.down;
+        return Pacman.down;
     }
 
     public void setDown(Image down) {
-        this.down = down;
+        Pacman.down = down;
     }
 
     public Image getLeft() {
-        return this.left;
+        return Pacman.left;
     }
 
     public void setLeft(Image left) {
-        this.left = left;
+        Pacman.left = left;
     }
 
     public Image getRight() {
-        return this.right;
+        return Pacman.right;
     }
 
     public void setRight(Image right) {
-        this.right = right;
+        Pacman.right = right;
     }
 
     public Pacman up(Image up) {
@@ -73,7 +73,7 @@ public class Pacman extends Character {
             return false;
         }
         Pacman pacman = (Pacman) o;
-        return Objects.equals(up, pacman.up) && Objects.equals(down, pacman.down) && Objects.equals(left, pacman.left) && Objects.equals(right, pacman.right);
+        return Objects.equals(up, Pacman.up) && Objects.equals(down, Pacman.down) && Objects.equals(left, Pacman.left) && Objects.equals(right, Pacman.right);
     }
 
     @Override
