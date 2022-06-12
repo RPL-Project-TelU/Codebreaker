@@ -32,12 +32,12 @@ public class PacmanView extends JPanel implements ActionListener{
     
     
     private void loadImages() {
-    	heart = new ImageIcon("E:\\Telkom University\\Semester 4\\PEMROGRAMAN BERORIENTASI OBJEK\\Tubes\\Paling baru test bikin mvc\\Codebreaker\\assets\\hearth.png").getImage();
-        Ghost.image = new ImageIcon("E:\\Telkom University\\Semester 4\\PEMROGRAMAN BERORIENTASI OBJEK\\Tubes\\Paling baru test bikin mvc\\Codebreaker\\assets\\ghost.png").getImage();
-        Pacman.up = new ImageIcon("E:\\Telkom University\\Semester 4\\PEMROGRAMAN BERORIENTASI OBJEK\\Tubes\\Paling baru test bikin mvc\\Codebreaker\\assets\\up.gif").getImage();
-        Pacman.down = new ImageIcon("E:\\Telkom University\\Semester 4\\PEMROGRAMAN BERORIENTASI OBJEK\\Tubes\\Paling baru test bikin mvc\\Codebreaker\\assets\\down.gif").getImage();
-        Pacman.left = new ImageIcon("E:\\Telkom University\\Semester 4\\PEMROGRAMAN BERORIENTASI OBJEK\\Tubes\\Paling baru test bikin mvc\\Codebreaker\\assets\\left.gif").getImage();
-        Pacman.right = new ImageIcon("E:\\Telkom University\\Semester 4\\PEMROGRAMAN BERORIENTASI OBJEK\\Tubes\\Paling baru test bikin mvc\\Codebreaker\\assets\\right.gif").getImage();
+    	heart = new ImageIcon("assets\\hearth.png").getImage();
+        Ghost.image = new ImageIcon("assets\\ghost.png").getImage();
+        Pacman.up = new ImageIcon("assets\\up.gif").getImage();
+        Pacman.down = new ImageIcon("assets\\down.gif").getImage();
+        Pacman.left = new ImageIcon("assets\\left.gif").getImage();
+        Pacman.right = new ImageIcon("assets\\right.gif").getImage();
 
     }
        private void initVariables() {
@@ -146,10 +146,11 @@ public class PacmanView extends JPanel implements ActionListener{
         for (y = 0; y < ScreenSettings.SCREEN_SIZE; y += ScreenSettings.BLOCK_SIZE) {
             for (x = 0; x < ScreenSettings.SCREEN_SIZE; x += ScreenSettings.BLOCK_SIZE) {
 
-                g2d.setColor(new Color(0,72,251));
+                g2d.setColor(new Color(204,255,0));
                 g2d.setStroke(new BasicStroke(5));
                 
-                if ((ctrl.getScreenData()[i] == 0)) {
+                if ((Level.levels[0][i] == 0)) {
+                    //g2d.setColor(new Color(0,0,0));
                     g2d.fillRect(x, y, ScreenSettings.BLOCK_SIZE, ScreenSettings.BLOCK_SIZE);
                     
                 }
