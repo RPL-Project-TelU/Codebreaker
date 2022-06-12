@@ -72,7 +72,6 @@ public class Pacman extends Character {
         if (!(o instanceof Pacman)) {
             return false;
         }
-        Pacman pacman = (Pacman) o;
         return Objects.equals(up, Pacman.up) && Objects.equals(down, Pacman.down) && Objects.equals(left, Pacman.left) && Objects.equals(right, Pacman.right);
     }
 

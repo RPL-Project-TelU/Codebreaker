@@ -19,6 +19,7 @@ public class ScreenSettings implements Serializable{
             ScreenSettings temp = new ScreenSettings();
             oos.writeObject(temp);
             oos.flush();
+            oos.close();
         } catch (IOException ex){
             System.out.println(ex.getMessage());
         }
@@ -29,6 +30,7 @@ public class ScreenSettings implements Serializable{
             FileInputStream fis =new FileInputStream("settings.json");
             ObjectInputStream ois=new ObjectInputStream(fis);
             ScreenSettings settings = (ScreenSettings) ois.readObject();
+            ois.close();
         } catch(IOException ioe){
             System.out.println(ioe.getMessage());
         } catch(Exception e){
