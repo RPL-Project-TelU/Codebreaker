@@ -27,8 +27,9 @@ public class Level implements Serializable{
         try {
             FileOutputStream fos=new FileOutputStream("level.json");
             ObjectOutputStream oos=new ObjectOutputStream(fos);
-            oos.writeObject(this.levels);
+            oos.writeObject(Level.levels);
             oos.flush();
+            oos.close();
         } catch (IOException ex){
             System.out.println(ex.getMessage());
         }
@@ -39,6 +40,7 @@ public class Level implements Serializable{
             FileInputStream fis =new FileInputStream("level.json");
             ObjectInputStream ois=new ObjectInputStream(fis);
             Level.levels = (int[][]) ois.readObject();
+            ois.close();
         } catch(IOException ioe){
             System.out.println(ioe.getMessage());
         } catch(Exception e){
