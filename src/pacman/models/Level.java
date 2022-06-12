@@ -40,9 +40,9 @@ public class Level implements Serializable{
             ObjectInputStream ois=new ObjectInputStream(fis);
             Level.levels = (int[][]) ois.readObject();
         } catch(IOException ioe){
-            System.exit(1);
+            System.out.println(ioe.getMessage());
         } catch(Exception e){
-            System.exit(1);
+            System.out.println(e.getMessage());
         }
     }
 }

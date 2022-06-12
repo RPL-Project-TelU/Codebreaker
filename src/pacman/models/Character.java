@@ -87,6 +87,11 @@ public class Character {
         return this;
     }
 
+    public void updatePos(){
+        y = y + speed * dy;
+        x = x + speed * dx;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == this)

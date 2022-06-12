@@ -5,6 +5,7 @@ import java.util.Objects;
 import pacman.models.Ghost;
 import pacman.models.Level;
 import pacman.models.Pacman;
+import pacman.views.ScreenSettings;
 
 public class PacmanService {
     private boolean inGame = false;
@@ -15,7 +16,7 @@ public class PacmanService {
 
     private int N_GHOSTS = 6;
     private int lives, score;
-    private int[] dx, dy;
+    private int[] g_req_dx, g_req_dy;
     private Ghost[] ghosts;
 
     private Pacman pacman;
@@ -34,6 +35,8 @@ public class PacmanService {
         for (Ghost g : ghosts){
             g = new Ghost();
         }
+        g_req_dx = new int[4];
+        g_req_dy = new int[4];
         pacman = new Pacman();
     }
 
@@ -61,6 +64,156 @@ public class PacmanService {
         return score;
     }
 
+    public void movePacman() {
+
+        int pos;
+        short ch;
+
+        if (pacman.getX() % ScreenSettings.BLOCK_SIZE == 0 && pacman.getY() % ScreenSettings.BLOCK_SIZE == 0) {
+            // Get block posision representation in array
+            pos = pacman.getX() / ScreenSettings.BLOCK_SIZE + 
+                ScreenSettings.N_BLOCKS * (int) (pacman.getY() / ScreenSettings.BLOCK_SIZE);
+            ch = screenData[pos];
+
+            if ((ch & 16) != 0) {
+                screenData[pos] = (short) (ch & 15);
+                score++;
+            }
+
+            if (req_dx != 0 || req_dy != 0) {
+                if (!((req_dx == -1 && req_dy == 0 && (ch & 1) != 0)
+                        || (req_dx == 1 && req_dy == 0 && (ch & 4) != 0)
+                        || (req_dx == 0 && req_dy == -1 && (ch & 2) != 0)
+                        || (req_dx == 0 && req_dy == 1 && (ch & 8) != 0))) {
+                    pacman.setDx(req_dx);
+                    pacman.setDy(req_dy);
+                }
+            }
+
+            // Check for standstill
+            if ((pacman.getDx() == -1 && pacman.getDy() == 0 && (ch & 1) != 0)
+                    || (pacman.getDx() == 1 && pacman.getDy() == 0 && (ch & 4) != 0)
+                    || (pacman.getDx() == 0 && pacman.getDy() == -1 && (ch & 2) != 0)
+                    || (pacman.getDx() == 0 && pacman.getDy() == 1 && (ch & 8) != 0)) {
+                pacman.setDx(0);
+                pacman.setDy(0);
+            }
+        } 
+        pacman.updatePos();
+    }
+
+    
+
+    public void moveGhosts() {
+
+        int pos;
+        int count;
+        // TODO how to implement ghost moving
+
+        // Iterate through all ghost
+        for (int i = 0; i < N_GHOSTS; i++) {
+
+            // Check if ghost in a block?
+            if (ghosts[i].getX() % ScreenSettings.BLOCK_SIZE == 0 
+            && ghosts[i].getY() % ScreenSettings.BLOCK_SIZE == 0) {
+
+                // Get block posision representation in array 
+                pos = ghosts[i].getX() / ScreenSettings.BLOCK_SIZE 
+                + ScreenSettings.N_BLOCKS * (int) (ghosts[i].getY() / ScreenSettings.BLOCK_SIZE);
+
+                count = 0;
+
+                if ((screenData[pos] & 1) == 0 && ghosts[i].getDx() != 1) {
+                    g_req_dx[count] = -1;
+                    g_req_dy[count] = 0;
+                    count++;
+                }
+
+                if ((screenData[pos] & 2) == 0 && ghosts[i].getDy() != 1) {
+                    g_req_dx[count] = 0;
+                    g_req_dy[count] = -1;
+                    count++;
+                }
+
+                if ((screenData[pos] & 4) == 0 && ghosts[i].getDx() != -1) {
+                    g_req_dx[count] = 1;
+                    g_req_dy[count] = 0;
+                    count++;
+                }
+
+                if ((screenData[pos] & 8) == 0 && ghosts[i].getDy() != -1) {
+                    g_req_dx[count] = 0;
+                    g_req_dy[count] = 1;
+                    count++;
+                }
+
+                if (count == 0) {
+
+                    if ((screenData[pos] & 15) == 15) {
+                        ghosts[i].setDx(0);
+                        ghosts[i].setDy(0);
+                    } else {
+                        ghosts[i].setDx(-ghosts[i].getDx());
+                        ghosts[i].setDy(-ghosts[i].getDy());
+                    }
+
+                } else {
+
+                    count = (int) (Math.random() * count);
+
+                    if (count > 3) {
+                        count = 3;
+                    }
+
+                    ghosts[i].setDx(g_req_dx[count]);
+                    ghosts[i].setDy(g_req_dy[count]);
+
+                }
+
+            }
+
+            ghosts[i].updatePos();
+            //drawGhost(g2d, ghost_x[i] + 1, ghost_y[i] + 1);
+
+            if (pacman.getX() > (ghosts[i].getX() - 12) && pacman.getX() < (ghosts[i].getX() + 12)
+                    && pacman.getY() > (ghosts[i].getY() - 12) && pacman.getY() < (ghosts[i].getY() + 12)
+                    && inGame) {
+
+                    dying =true;
+            }
+        }
+    }
+
+    public void continueLevel() {
+
+    	int dx = 1;
+        int random;
+
+        for (int i = 0; i < N_GHOSTS; i++) {
+
+            ghosts[i].setY(4 * ScreenSettings.BLOCK_SIZE); //start position
+            ghosts[i].setX(4 * ScreenSettings.BLOCK_SIZE);
+            ghosts[i].setDy(0);
+            ghosts[i].setDx(dx);
+            dx = -dx;
+            random = (int) (Math.random() * (currentSpeed + 1));
+
+            if (random > currentSpeed) {
+                random = currentSpeed;
+            }
+
+            ghosts[i].setSpeed(validSpeeds[random]);
+        }
+
+        
+        pacman.setY(7 * ScreenSettings.BLOCK_SIZE); //start position
+        pacman.setX(11 * ScreenSettings.BLOCK_SIZE);
+        pacman.setDy(0);    //reset direction move
+        pacman.setDx(0);
+        req_dx = 0;		// reset direction controls
+        req_dy = 0;
+        dying = false;
+    }
 
     public PacmanService(boolean inGame, boolean dying, int N_GHOSTS, int lives, int score, int[] dx, int[] dy, Ghost[] ghosts, Pacman pacman, int req_dx, int req_dy, Level level, int currentSpeed, short[] screenData) {
         this.inGame = inGame;
@@ -68,8 +221,8 @@ public class PacmanService {
         this.N_GHOSTS = N_GHOSTS;
         this.lives = lives;
         this.score = score;
-        this.dx = dx;
-        this.dy = dy;
+        this.g_req_dx = dx;
+        this.g_req_dy = dy;
         this.ghosts = ghosts;
         this.pacman = pacman;
         this.req_dx = req_dx;
@@ -129,19 +282,19 @@ public class PacmanService {
     }
 
     public int[] getDx() {
-        return this.dx;
+        return this.g_req_dx;
     }
 
     public void setDx(int[] dx) {
-        this.dx = dx;
+        this.g_req_dx = dx;
     }
 
     public int[] getDy() {
-        return this.dy;
+        return this.g_req_dy;
     }
 
     public void setDy(int[] dy) {
-        this.dy = dy;
+        this.g_req_dy = dy;
     }
 
     public Ghost[] getGhosts() {
@@ -282,7 +435,7 @@ public class PacmanService {
 
     @Override
     public int hashCode() {
-        return Objects.hash(inGame, dying, MAX_GHOSTS, PACMAN_SPEED, N_GHOSTS, lives, score, dx, dy, ghosts, pacman, req_dx, req_dy, level, validSpeeds, maxSpeed, currentSpeed, screenData);
+        return Objects.hash(inGame, dying, MAX_GHOSTS, PACMAN_SPEED, N_GHOSTS, lives, score, g_req_dx, g_req_dy, ghosts, pacman, req_dx, req_dy, level, validSpeeds, maxSpeed, currentSpeed, screenData);
     }
 
     @Override

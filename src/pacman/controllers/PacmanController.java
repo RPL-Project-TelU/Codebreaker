@@ -12,8 +12,61 @@ public class PacmanController {
         view = new PacmanView(this);
     }
 
+    public void run(){
+
+    }
+
+    public void movePacman(){
+        service.movePacman();
+    }
+
+    public void moveGhosts(){
+        service.moveGhosts();
+    }
+
+    public int getReq_dx(){
+        return service.getReq_dx();
+    }
+
+    public int getReq_dy(){
+        return service.getReq_dy();
+    }
+
+    public int getPacmanX(){
+        return service.getPacman().getX();
+    }
+
+    public int getPacmanY(){
+        return service.getPacman().getY();
+    }
+
+    public void initGame(){
+        service.initGame();
+    }
+
+    public void continueLevel(){
+        service.continueLevel();
+    }
+
+    public void setReqDxReqDy(int dx, int dy){
+        service.setReq_dx(dx);
+        service.setReq_dy(dy);
+    }
+
+    public void setInGame(boolean inGame){
+        service.setInGame(inGame);
+    }
+    public boolean isInGame(){
+        return service.isInGame();
+    }
+
+
     public boolean isDying(){
         return service.isDying();
+    }
+
+    public void setDying(boolean dying){
+        service.setDying(dying);
     }
 
     public int getScore(){
@@ -55,4 +108,12 @@ public class PacmanController {
     public void decreaseHealth(){
         service.decreaseHealt();
     }
+
+    public int getGhostX(int i){
+        return service.getGhosts()[i].getX();
+    }
+    public int getGhostY(int i){
+        return service.getGhosts()[i].getY();
+    }
+
 }
