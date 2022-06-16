@@ -1,15 +1,15 @@
 package pacman.models;
+
 import java.awt.Image;
 import java.util.Objects;
 
-public class Ghost extends Character{
+public class Ghost extends Character {
     public static Image image;
-
 
     public Ghost() {
     }
 
-    public Ghost(int x, int y, int dx, int dy, int speed){
+    public Ghost(int x, int y, int dx, int dy, int speed) {
         super(x, y, dx, dy, speed);
     }
 
@@ -45,13 +45,13 @@ public class Ghost extends Character{
     @Override
     public String toString() {
         return "{" +
-            " x='" + getX() + "'\n" +
-            ", y='" + getY() + "'\n" +
-            ", dx='" + getDx() + "'\n" +
-            ", dy='" + getDy() + "'\n" +
-            ", speed='" + getSpeed() + "'\n" +
-            " image='" + getImage() + "'\n" +
-            "}";
+                " x='" + getX() + "'\n" +
+                ", y='" + getY() + "'\n" +
+                ", dx='" + getDx() + "'\n" +
+                ", dy='" + getDy() + "'\n" +
+                ", speed='" + getSpeed() + "'\n" +
+                " image='" + getImage() + "'\n" +
+                "}";
     }
 
 }

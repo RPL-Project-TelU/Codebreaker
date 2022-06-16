@@ -9,10 +9,8 @@ public class Character {
     private int dy;
     private int speed;
 
-
     public Character() {
     }
-
 
     public Character(int x, int y, int dx, int dy, int speed) {
         this.x = x;
@@ -87,8 +85,8 @@ public class Character {
         return this;
     }
 
-    public void updatePos(){
-        //System.out.println(this.toString());
+    public void updatePos() {
+        // System.out.println(this.toString());
         y = y + (speed * dy);
         x = x + (speed * dx);
     }
@@ -101,7 +99,8 @@ public class Character {
             return false;
         }
         Character character = (Character) o;
-        return x == character.x && y == character.y && dx == character.dx && dy == character.dy && speed == character.speed;
+        return x == character.x && y == character.y && dx == character.dx && dy == character.dy
+                && speed == character.speed;
     }
 
     @Override
@@ -112,14 +111,12 @@ public class Character {
     @Override
     public String toString() {
         return "{" +
-            " x='" + getX() + "'" +
-            ", y='" + getY() + "'" +
-            ", dx='" + getDx() + "'" +
-            ", dy='" + getDy() + "'" +
-            ", speed='" + getSpeed() + "'" +
-            "}";
+                " x='" + getX() + "'" +
+                ", y='" + getY() + "'" +
+                ", dx='" + getDx() + "'" +
+                ", dy='" + getDy() + "'" +
+                ", speed='" + getSpeed() + "'" +
+                "}";
     }
-
-    
 
 }

@@ -5,122 +5,122 @@ import pacman.views.PacmanView;
 
 public class PacmanController {
     private PacmanService service;
-    private PacmanView view;
 
-    public PacmanController(){
+    public PacmanController() {
         service = new PacmanService();
-        view = new PacmanView(this);
+        new PacmanView(this);
     }
 
-    public void run(){
+    public void run() {
 
     }
 
-    public void movePacman(){
+    public void movePacman() {
         service.movePacman();
     }
 
-    public void moveGhosts(){
+    public void moveGhosts() {
         service.moveGhosts();
     }
 
-    public int getReq_dx(){
+    public int getReq_dx() {
         return service.getReq_dx();
     }
 
-    public int getReq_dy(){
+    public int getReq_dy() {
         return service.getReq_dy();
     }
 
-    public int getPacmanX(){
+    public int getPacmanX() {
         return service.getPacman().getX();
     }
 
-    public int getPacmanY(){
+    public int getPacmanY() {
         return service.getPacman().getY();
     }
 
-    public void initGame(){
+    public void initGame() {
         service.initGame();
     }
-    
-    public void initLevel(){
+
+    public void initLevel() {
         service.initLevel();
     }
 
-    public short[] getScreenData(){
+    public short[] getScreenData() {
         return service.getScreenData();
     }
-    
-    public void continueLevel(){
+
+    public void continueLevel() {
         service.continueLevel();
     }
 
-    public void setReqDxReqDy(int dx, int dy){
+    public void setReqDxReqDy(int dx, int dy) {
         service.setReq_dx(dx);
         service.setReq_dy(dy);
     }
 
-    public void setInGame(boolean inGame){
+    public void setInGame(boolean inGame) {
         service.setInGame(inGame);
     }
-    public boolean isInGame(){
+
+    public boolean isInGame() {
         return service.isInGame();
     }
 
-
-    public boolean isDying(){
+    public boolean isDying() {
         return service.isDying();
     }
 
-    public void setDying(boolean dying){
+    public void setDying(boolean dying) {
         service.setDying(dying);
     }
 
-    public int getScore(){
+    public int getScore() {
         return service.getScore();
     }
 
-    public int getLives(){
+    public int getLives() {
         return service.getLives();
     }
 
-    public void addScore(int add){
-        service.setScore(service.getScore()+add);
+    public void addScore(int add) {
+        service.setScore(service.getScore() + add);
     }
 
-    public int getN_GHOSTS(){
+    public int getN_GHOSTS() {
         return service.getN_GHOSTS();
     }
 
-    public void addN_GHOSTS(int add){
-        service.setN_GHOSTS(service.getN_GHOSTS()+add);
+    public void addN_GHOSTS(int add) {
+        service.setN_GHOSTS(service.getN_GHOSTS() + add);
     }
 
-    public int getMAX_GHOSTS(){
-        return service.getMAX_GHOSTS(); 
+    public int getMAX_GHOSTS() {
+        return service.getMAX_GHOSTS();
     }
 
-    public int getCurrentSpeed(){
+    public int getCurrentSpeed() {
         return service.getCurrentSpeed();
     }
 
-    public void addCurrentSpeed(int add){
-        service.setCurrentSpeed(service.getCurrentSpeed()+add);
+    public void addCurrentSpeed(int add) {
+        service.setCurrentSpeed(service.getCurrentSpeed() + add);
     }
 
-    public int getMaxSpeed(){
-        return service.getMaxSpeed(); 
+    public int getMaxSpeed() {
+        return service.getMaxSpeed();
     }
 
-    public void decreaseHealth(){
+    public void decreaseHealth() {
         service.decreaseHealt();
     }
 
-    public int getGhostX(int i){
+    public int getGhostX(int i) {
         return service.getGhosts()[i].getX();
     }
-    public int getGhostY(int i){
+
+    public int getGhostY(int i) {
         return service.getGhosts()[i].getY();
     }
 

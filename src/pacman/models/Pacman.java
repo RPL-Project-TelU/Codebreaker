@@ -1,16 +1,16 @@
 package pacman.models;
+
 import java.awt.Image;
 import java.util.Objects;
 
 public class Pacman extends Character {
     public static Image up, down, left, right;
 
-
     public Pacman() {
         super.setSpeed(6);
     }
 
-    public Pacman(int x, int y, int dx, int dy, int speed){
+    public Pacman(int x, int y, int dx, int dy, int speed) {
         super(x, y, dx, dy, speed);
     }
 
@@ -73,7 +73,8 @@ public class Pacman extends Character {
         if (!(o instanceof Pacman)) {
             return false;
         }
-        return Objects.equals(up, Pacman.up) && Objects.equals(down, Pacman.down) && Objects.equals(left, Pacman.left) && Objects.equals(right, Pacman.right);
+        return Objects.equals(up, Pacman.up) && Objects.equals(down, Pacman.down) && Objects.equals(left, Pacman.left)
+                && Objects.equals(right, Pacman.right);
     }
 
     @Override
@@ -84,12 +85,11 @@ public class Pacman extends Character {
     @Override
     public String toString() {
         return "{" +
-            " up='" + getUp() + "'" +
-            ", down='" + getDown() + "'" +
-            ", left='" + getLeft() + "'" +
-            ", right='" + getRight() + "'" +
-            "}";
+                " up='" + getUp() + "'" +
+                ", down='" + getDown() + "'" +
+                ", left='" + getLeft() + "'" +
+                ", right='" + getRight() + "'" +
+                "}";
     }
-
 
 }

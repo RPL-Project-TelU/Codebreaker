@@ -24,16 +24,16 @@ public class PacmanService {
 
     private Level level;
 
-    private final int validSpeeds[] = {1, 2, 3, 4, 6, 8};
+    private final int validSpeeds[] = { 1, 2, 3, 4, 6, 8 };
     private final int maxSpeed = 6;
 
     private int currentSpeed = 3;
     private short[] screenData;
 
-    public PacmanService(){
+    public PacmanService() {
         ghosts = new Ghost[MAX_GHOSTS];
         screenData = new short[ScreenSettings.N_BLOCKS * ScreenSettings.N_BLOCKS];
-        for (int i=0; i < MAX_GHOSTS; i++){
+        for (int i = 0; i < MAX_GHOSTS; i++) {
             ghosts[i] = new Ghost();
         }
         g_req_dx = new int[4];
@@ -41,39 +41,39 @@ public class PacmanService {
         pacman = new Pacman();
     }
 
-    public boolean isDying(){
+    public boolean isDying() {
         return dying;
     }
 
-    public void decreaseHealt(){
+    public void decreaseHealt() {
         lives--;
 
-        if(lives == 0){
+        if (lives == 0) {
             inGame = false;
-            
+
         }
     }
 
-    public void initGame(){
+    public void initGame() {
         lives = 3;
         score = 0;
         initLevel();
         N_GHOSTS = 6;
         currentSpeed = 3;
     }
-    
-    public void initLevel(){
+
+    public void initLevel() {
         int i;
-        
+
         for (i = 0; i < ScreenSettings.N_BLOCKS * ScreenSettings.N_BLOCKS; i++) {
             screenData[i] = (short) Level.levels[0][i];
-            //System.out.println(screenData[i]);
+            // System.out.println(screenData[i]);
         }
 
         continueLevel();
     }
 
-    public int getScore(){
+    public int getScore() {
         return score;
     }
 
@@ -83,14 +83,14 @@ public class PacmanService {
         short ch;
 
         if (pacman.getX() % ScreenSettings.BLOCK_SIZE == 0 && pacman.getY() % ScreenSettings.BLOCK_SIZE == 0) {
-            //System.out.println("service.movePacman ok");
+            // System.out.println("service.movePacman ok");
             // Get block posision representation in array
-            pos = pacman.getX() / ScreenSettings.BLOCK_SIZE + 
-                ScreenSettings.N_BLOCKS * (int) (pacman.getY() / ScreenSettings.BLOCK_SIZE);
+            pos = pacman.getX() / ScreenSettings.BLOCK_SIZE +
+                    ScreenSettings.N_BLOCKS * (int) (pacman.getY() / ScreenSettings.BLOCK_SIZE);
             ch = screenData[pos];
-            //System.out.println("service.movePacman ok" +ch +" x="+pacman.getX());
+            // System.out.println("service.movePacman ok" +ch +" x="+pacman.getX());
             if ((ch & 16) != 0) {
-                //System.out.println("service.movePacman ndak");
+                // System.out.println("service.movePacman ndak");
                 screenData[pos] = (short) (ch & 15);
                 score++;
             }
@@ -113,12 +113,10 @@ public class PacmanService {
                 pacman.setDx(0);
                 pacman.setDy(0);
             }
-        } 
-        //System.out.println("Warning something is wrong!"+pacman.getSpeed());
+        }
+        // System.out.println("Warning something is wrong!"+pacman.getSpeed());
         pacman.updatePos();
     }
-
-    
 
     public void moveGhosts() {
 
@@ -129,16 +127,16 @@ public class PacmanService {
         for (int i = 0; i < N_GHOSTS; i++) {
 
             // Check if ghost in a block?
-            if (ghosts[i].getX() % ScreenSettings.BLOCK_SIZE == 0 
-            && ghosts[i].getY() % ScreenSettings.BLOCK_SIZE == 0) {
+            if (ghosts[i].getX() % ScreenSettings.BLOCK_SIZE == 0
+                    && ghosts[i].getY() % ScreenSettings.BLOCK_SIZE == 0) {
 
-                // Get block posision representation in array 
-                pos = ghosts[i].getX() / ScreenSettings.BLOCK_SIZE 
-                + ScreenSettings.N_BLOCKS * (int) (ghosts[i].getY() / ScreenSettings.BLOCK_SIZE);
+                // Get block posision representation in array
+                pos = ghosts[i].getX() / ScreenSettings.BLOCK_SIZE
+                        + ScreenSettings.N_BLOCKS * (int) (ghosts[i].getY() / ScreenSettings.BLOCK_SIZE);
 
                 count = 0;
-                //System.out.println(ScreenSettings.BLOCK_SIZE);
-                //System.out.println(screenData[pos]);
+                // System.out.println(ScreenSettings.BLOCK_SIZE);
+                // System.out.println(screenData[pos]);
                 if ((screenData[pos] & 1) == 0 && ghosts[i].getDx() != 1) {
                     g_req_dx[count] = -1;
                     g_req_dy[count] = 0;
@@ -168,13 +166,14 @@ public class PacmanService {
                     if ((screenData[pos] & 15) == 15) {
                         ghosts[i].setDx(0);
                         ghosts[i].setDy(0);
-                        //System.out.println("count is 0 and true"+ghosts[i].getDy()+" and "+ghosts[i].getDx());
+                        // System.out.println("count is 0 and true"+ghosts[i].getDy()+" and
+                        // "+ghosts[i].getDx());
                     } else {
                         ghosts[i].setDx(-1 * ghosts[i].getDx());
                         ghosts[i].setDy(-1 * ghosts[i].getDy());
-                        //System.out.println("count is 0 and else"+ghosts[i].getDy()+" and "+ghosts[i].getDx());
+                        // System.out.println("count is 0 and else"+ghosts[i].getDy()+" and
+                        // "+ghosts[i].getDx());
                     }
-                    
 
                 } else {
 
@@ -186,33 +185,34 @@ public class PacmanService {
 
                     ghosts[i].setDx(g_req_dx[count]);
                     ghosts[i].setDy(g_req_dy[count]);
-                    //System.out.println(ghosts[i].getY()+" and "+ghosts[i].getX());
-                    //System.out.println("count is else"+ghosts[i].getDy()+" and "+ghosts[i].getDx());
+                    // System.out.println(ghosts[i].getY()+" and "+ghosts[i].getX());
+                    // System.out.println("count is else"+ghosts[i].getDy()+" and
+                    // "+ghosts[i].getDx());
 
                 }
 
             }
 
             ghosts[i].updatePos();
-            //drawGhost(g2d, ghost_x[i] + 1, ghost_y[i] + 1);
+            // drawGhost(g2d, ghost_x[i] + 1, ghost_y[i] + 1);
 
             if (pacman.getX() > (ghosts[i].getX() - 12) && pacman.getX() < (ghosts[i].getX() + 12)
                     && pacman.getY() > (ghosts[i].getY() - 12) && pacman.getY() < (ghosts[i].getY() + 12)
                     && inGame) {
 
-                    dying =true;
+                dying = true;
             }
         }
     }
 
     public void continueLevel() {
 
-    	int dx = 1;
+        int dx = 1;
         int random;
-        //System.out.println("Continue level engage"+pacman.getX());
+        // System.out.println("Continue level engage"+pacman.getX());
         for (int i = 0; i < N_GHOSTS; i++) {
 
-            ghosts[i].setY(4 * ScreenSettings.BLOCK_SIZE); //start position
+            ghosts[i].setY(4 * ScreenSettings.BLOCK_SIZE); // start position
             ghosts[i].setX(4 * ScreenSettings.BLOCK_SIZE);
             ghosts[i].setDy(0);
             ghosts[i].setDx(dx);
@@ -226,17 +226,17 @@ public class PacmanService {
             ghosts[i].setSpeed(validSpeeds[random]);
         }
 
-        
-        pacman.setY(7 * ScreenSettings.BLOCK_SIZE); //start position
+        pacman.setY(7 * ScreenSettings.BLOCK_SIZE); // start position
         pacman.setX(11 * ScreenSettings.BLOCK_SIZE);
-        pacman.setDy(0);    //reset direction move
+        pacman.setDy(0); // reset direction move
         pacman.setDx(0);
-        req_dx = 0;		// reset direction controls
+        req_dx = 0; // reset direction controls
         req_dy = 0;
         dying = false;
     }
 
-    public PacmanService(boolean inGame, boolean dying, int N_GHOSTS, int lives, int score, int[] dx, int[] dy, Ghost[] ghosts, Pacman pacman, int req_dx, int req_dy, Level level, int currentSpeed, short[] screenData) {
+    public PacmanService(boolean inGame, boolean dying, int N_GHOSTS, int lives, int score, int[] dx, int[] dy,
+            Ghost[] ghosts, Pacman pacman, int req_dx, int req_dy, Level level, int currentSpeed, short[] screenData) {
         this.inGame = inGame;
         this.dying = dying;
         this.N_GHOSTS = N_GHOSTS;
@@ -277,11 +277,9 @@ public class PacmanService {
         return this.MAX_GHOSTS;
     }
 
-
     public int getPACMAN_SPEED() {
         return this.PACMAN_SPEED;
     }
-
 
     public int getN_GHOSTS() {
         return this.N_GHOSTS;
@@ -298,6 +296,7 @@ public class PacmanService {
     public void setLives(int lives) {
         this.lives = lives;
     }
+
     public void setScore(int score) {
         this.score = score;
     }
@@ -362,11 +361,9 @@ public class PacmanService {
         return this.validSpeeds;
     }
 
-
     public int getMaxSpeed() {
         return this.maxSpeed;
     }
-
 
     public int getCurrentSpeed() {
         return this.currentSpeed;
@@ -456,31 +453,32 @@ public class PacmanService {
 
     @Override
     public int hashCode() {
-        return Objects.hash(inGame, dying, MAX_GHOSTS, PACMAN_SPEED, N_GHOSTS, lives, score, g_req_dx, g_req_dy, ghosts, pacman, req_dx, req_dy, level, validSpeeds, maxSpeed, currentSpeed, screenData);
+        return Objects.hash(inGame, dying, MAX_GHOSTS, PACMAN_SPEED, N_GHOSTS, lives, score, g_req_dx, g_req_dy, ghosts,
+                pacman, req_dx, req_dy, level, validSpeeds, maxSpeed, currentSpeed, screenData);
     }
 
     @Override
     public String toString() {
         return "{" +
-            " inGame='" + isInGame() + "'" +
-            ", dying='" + isDying() + "'" +
-            ", MAX_GHOSTS='" + getMAX_GHOSTS() + "'" +
-            ", PACMAN_SPEED='" + getPACMAN_SPEED() + "'" +
-            ", N_GHOSTS='" + getN_GHOSTS() + "'" +
-            ", lives='" + getLives() + "'" +
-            ", score='" + getScore() + "'" +
-            ", dx='" + getDx() + "'" +
-            ", dy='" + getDy() + "'" +
-            ", ghosts='" + getGhosts() + "'" +
-            ", pacman='" + getPacman() + "'" +
-            ", req_dx='" + getReq_dx() + "'" +
-            ", req_dy='" + getReq_dy() + "'" +
-            ", level='" + getLevel() + "'" +
-            ", validSpeeds[]='" + getValidSpeeds().toString() + "'" +
-            ", maxSpeed='" + getMaxSpeed() + "'" +
-            ", currentSpeed='" + getCurrentSpeed() + "'" +
-            ", screenData='" + getScreenData() + "'" +
-            "}";
+                " inGame='" + isInGame() + "'" +
+                ", dying='" + isDying() + "'" +
+                ", MAX_GHOSTS='" + getMAX_GHOSTS() + "'" +
+                ", PACMAN_SPEED='" + getPACMAN_SPEED() + "'" +
+                ", N_GHOSTS='" + getN_GHOSTS() + "'" +
+                ", lives='" + getLives() + "'" +
+                ", score='" + getScore() + "'" +
+                ", dx='" + getDx() + "'" +
+                ", dy='" + getDy() + "'" +
+                ", ghosts='" + getGhosts() + "'" +
+                ", pacman='" + getPacman() + "'" +
+                ", req_dx='" + getReq_dx() + "'" +
+                ", req_dy='" + getReq_dy() + "'" +
+                ", level='" + getLevel() + "'" +
+                ", validSpeeds[]='" + getValidSpeeds().toString() + "'" +
+                ", maxSpeed='" + getMaxSpeed() + "'" +
+                ", currentSpeed='" + getCurrentSpeed() + "'" +
+                ", screenData='" + getScreenData() + "'" +
+                "}";
     }
-    
+
 }

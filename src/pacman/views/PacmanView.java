@@ -12,13 +12,12 @@ import javax.swing.Timer;
 import pacman.controllers.PacmanController;
 import pacman.models.*;
 
-public class PacmanView extends JPanel implements ActionListener{
-    //mvc stuff
+public class PacmanView extends JPanel implements ActionListener {
+    // mvc stuff
     private final PacmanController ctrl;
-    
+
     private Image heart;
 
-    
     private Timer timer;
 
     public PacmanView(PacmanController ctrl) {
@@ -29,10 +28,9 @@ public class PacmanView extends JPanel implements ActionListener{
         setFocusable(true);
         initGame();
     }
-    
-    
+
     private void loadImages() {
-    	heart = new ImageIcon("assets\\hearth.png").getImage();
+        heart = new ImageIcon("assets\\hearth.png").getImage();
         Ghost.image = new ImageIcon("assets\\ghost.png").getImage();
         Pacman.up = new ImageIcon("assets\\up.gif").getImage();
         Pacman.down = new ImageIcon("assets\\down.gif").getImage();
@@ -40,7 +38,8 @@ public class PacmanView extends JPanel implements ActionListener{
         Pacman.right = new ImageIcon("assets\\right.gif").getImage();
 
     }
-       private void initVariables() {
+
+    private void initVariables() {
         ScreenSettings.load();
 
         timer = new Timer(40, this);
@@ -52,23 +51,23 @@ public class PacmanView extends JPanel implements ActionListener{
         if (ctrl.isDying()) {
             ctrl.decreaseHealth();
             ctrl.continueLevel();
-            
+
         } else {
-            //System.out.print("playGame = false, ");
+            // System.out.print("playGame = false, ");
             ctrl.movePacman();
             drawPacman(g2d);
             ctrl.moveGhosts();
             drawGhosts(g2d);
             checkMaze();
-            //System.out.println("Finish playGame");
+            // System.out.println("Finish playGame");
         }
     }
 
     private void showIntroScreen(Graphics2D g2d) {
- 
-    	String start = "Press SPACE to start";
+
+        String start = "Press SPACE to start";
         g2d.setColor(Color.yellow);
-        g2d.drawString(start, (ScreenSettings.SCREEN_SIZE)/4, 150);
+        g2d.drawString(start, (ScreenSettings.SCREEN_SIZE) / 4, 150);
     }
 
     private void drawScore(Graphics2D g) {
@@ -112,14 +111,14 @@ public class PacmanView extends JPanel implements ActionListener{
         }
     }
 
-    private void initLevel(){
+    private void initLevel() {
         ctrl.initLevel();
     }
 
     private void drawGhosts(Graphics2D g2d) {
         // Iterate through all ghost
         for (int i = 0; i < ctrl.getN_GHOSTS(); i++) {
-            //System.out.println("drawGhost, image="+Ghost.image);
+            // System.out.println("drawGhost, image="+Ghost.image);
             g2d.drawImage(Ghost.image, ctrl.getGhostX(i) + 1, ctrl.getGhostY(i) + 1, this);
         }
     }
@@ -133,7 +132,7 @@ public class PacmanView extends JPanel implements ActionListener{
         } else if (ctrl.getReq_dy() == -1) {
             g2d.drawImage(Pacman.up, ctrl.getPacmanX() + 1, ctrl.getPacmanY() + 1, this);
         } else {
-            //System.out.println("bawah"+ctrl.getPacmanX()+" dan "+ctrl.getPacmanY());
+            // System.out.println("bawah"+ctrl.getPacmanX()+" dan "+ctrl.getPacmanY());
             g2d.drawImage(Pacman.down, ctrl.getPacmanX() + 1, ctrl.getPacmanY() + 1, this);
         }
     }
@@ -146,37 +145,37 @@ public class PacmanView extends JPanel implements ActionListener{
         for (y = 0; y < ScreenSettings.SCREEN_SIZE; y += ScreenSettings.BLOCK_SIZE) {
             for (x = 0; x < ScreenSettings.SCREEN_SIZE; x += ScreenSettings.BLOCK_SIZE) {
 
-                g2d.setColor(new Color(204,255,0));
+                g2d.setColor(new Color(204, 255, 0));
                 g2d.setStroke(new BasicStroke(5));
-                
+
                 if ((Level.levels[0][i] == 0)) {
-                    //g2d.setColor(new Color(0,0,0));
+                    // g2d.setColor(new Color(0,0,0));
                     g2d.fillRect(x, y, ScreenSettings.BLOCK_SIZE, ScreenSettings.BLOCK_SIZE);
-                    
+
                 }
-                
-                if ((ctrl.getScreenData()[i] & 1) != 0) { 
+
+                if ((ctrl.getScreenData()[i] & 1) != 0) {
                     g2d.drawLine(x, y, x, y + ScreenSettings.BLOCK_SIZE - 1);
                 }
 
-                if ((ctrl.getScreenData()[i] & 2) != 0) { 
+                if ((ctrl.getScreenData()[i] & 2) != 0) {
                     g2d.drawLine(x, y, x + ScreenSettings.BLOCK_SIZE - 1, y);
                 }
 
-                if ((ctrl.getScreenData()[i] & 4) != 0) { 
+                if ((ctrl.getScreenData()[i] & 4) != 0) {
                     g2d.drawLine(x + ScreenSettings.BLOCK_SIZE - 1, y, x + ScreenSettings.BLOCK_SIZE - 1,
                             y + ScreenSettings.BLOCK_SIZE - 1);
                 }
 
-                if ((ctrl.getScreenData()[i] & 8) != 0) { 
+                if ((ctrl.getScreenData()[i] & 8) != 0) {
                     g2d.drawLine(x, y + ScreenSettings.BLOCK_SIZE - 1, x + ScreenSettings.BLOCK_SIZE - 1,
                             y + ScreenSettings.BLOCK_SIZE - 1);
                 }
 
-                if ((ctrl.getScreenData()[i] & 16) != 0) { 
-                    g2d.setColor(new Color(255,255,255));
+                if ((ctrl.getScreenData()[i] & 16) != 0) {
+                    g2d.setColor(new Color(255, 255, 255));
                     g2d.fillOval(x + 10, y + 10, 6, 6);
-               }
+                }
 
                 i++;
             }
@@ -184,13 +183,10 @@ public class PacmanView extends JPanel implements ActionListener{
     }
 
     private void initGame() {
-    	ctrl.initGame();
+        ctrl.initGame();
         ctrl.initLevel();
     }
 
-    
-
- 
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -205,7 +201,7 @@ public class PacmanView extends JPanel implements ActionListener{
 
         if (ctrl.isInGame()) {
             playGame(g2d);
-            //System.out.println("inGame true");
+            // System.out.println("inGame true");
         } else {
             showIntroScreen(g2d);
         }
@@ -214,8 +210,7 @@ public class PacmanView extends JPanel implements ActionListener{
         g2d.dispose();
     }
 
-
-    //controls
+    // controls
     class TAdapter extends KeyAdapter {
 
         @Override
@@ -234,7 +229,7 @@ public class PacmanView extends JPanel implements ActionListener{
                     ctrl.setReqDxReqDy(0, 1);
                 } else if (key == KeyEvent.VK_ESCAPE && timer.isRunning()) {
                     ctrl.setInGame(false);
-                } 
+                }
             } else {
                 if (key == KeyEvent.VK_SPACE) {
                     ctrl.setInGame(true);
@@ -242,13 +237,11 @@ public class PacmanView extends JPanel implements ActionListener{
                 }
             }
         }
-}
+    }
 
-	
     @Override
     public void actionPerformed(ActionEvent e) {
         repaint();
     }
-		
-	
+
 }
