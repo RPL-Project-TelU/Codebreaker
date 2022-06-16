@@ -14,11 +14,11 @@ public class Ghost extends Character {
     }
 
     public Image getImage() {
-        return this.image;
+        return Ghost.image;
     }
 
     public void setImage(Image image) {
-        this.image = image;
+        Ghost.image = image;
     }
 
     public Ghost image(Image image) {
@@ -33,8 +33,7 @@ public class Ghost extends Character {
         if (!(o instanceof Ghost)) {
             return false;
         }
-        Ghost ghost = (Ghost) o;
-        return Objects.equals(image, ghost.image);
+        return Objects.equals(image, Ghost.image);
     }
 
     @Override

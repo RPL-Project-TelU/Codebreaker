@@ -111,10 +111,6 @@ public class PacmanView extends JPanel implements ActionListener {
         }
     }
 
-    private void initLevel() {
-        ctrl.initLevel();
-    }
-
     private void drawGhosts(Graphics2D g2d) {
         // Iterate through all ghost
         for (int i = 0; i < ctrl.getN_GHOSTS(); i++) {
