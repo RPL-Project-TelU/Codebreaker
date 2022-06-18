@@ -461,6 +461,17 @@ $RECYCLE.BIN/
 ##
 ## just some stuff i found on github
 
+# Netbeans stuff
+**/nbproject/private/
+**/nbproject/Makefile-*.mk
+**/nbproject/Package-*.bash
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+
 *.java.hsp
 *.sonarj
 *.sw*
