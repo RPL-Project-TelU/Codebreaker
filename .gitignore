@@ -543,3 +543,5 @@ replay_pid*
 
 # VS Code
 .vscode/
+application.yaml
+application.yml
