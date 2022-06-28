@@ -1,7 +1,7 @@
-package pacman;
+package com.codebreaker.pacmanclient;
 
-import pacman.controllers.PacmanController;
-import pacman.views.MainView;
+import com.codebreaker.pacmanclient.controllers.PacmanController;
+import com.codebreaker.pacmanclient.views.MainView;
 
 public class Main {
     public static void main(String[] args) {

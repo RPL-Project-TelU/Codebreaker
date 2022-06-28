@@ -1,7 +1,7 @@
-package pacman.controllers;
+package com.codebreaker.pacmanclient.controllers;
 
-import pacman.services.PacmanService;
-import pacman.views.PacmanView;
+import com.codebreaker.pacmanclient.services.PacmanService;
+import com.codebreaker.pacmanclient.views.PacmanView;
 
 public class PacmanController {
     private PacmanService service;

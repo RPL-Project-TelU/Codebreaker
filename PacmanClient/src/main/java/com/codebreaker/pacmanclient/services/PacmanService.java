@@ -1,11 +1,11 @@
-package pacman.services;
+package com.codebreaker.pacmanclient.services;
 
 import java.util.Objects;
 
-import pacman.models.Ghost;
-import pacman.models.Level;
-import pacman.models.Pacman;
-import pacman.views.ScreenSettings;
+import com.codebreaker.pacmanclient.models.Ghost;
+import com.codebreaker.pacmanclient.models.Level;
+import com.codebreaker.pacmanclient.models.Pacman;
+import com.codebreaker.pacmanclient.views.ScreenSettings;
 
 public class PacmanService {
     private boolean inGame = false;

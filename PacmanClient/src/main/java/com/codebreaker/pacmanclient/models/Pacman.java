@@ -1,4 +1,4 @@
-package pacman.models;
+package com.codebreaker.pacmanclient.models;
 
 import java.awt.Image;
 import java.util.Objects;

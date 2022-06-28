@@ -1,16 +1,18 @@
-package pacman.views;
+package com.codebreaker.pacmanclient.views;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.FileNotFoundException;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-import pacman.controllers.PacmanController;
-import pacman.models.*;
+import com.codebreaker.pacmanclient.controllers.PacmanController;
+import com.codebreaker.pacmanclient.models.*;
 
 public class PacmanView extends JPanel implements ActionListener {
     // mvc stuff
@@ -22,20 +24,28 @@ public class PacmanView extends JPanel implements ActionListener {
 
     public PacmanView(PacmanController ctrl) {
         this.ctrl = ctrl;
-        loadImages();
+        try {
+            loadImages();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
         initVariables();
         addKeyListener(new TAdapter());
         setFocusable(true);
         initGame();
     }
 
-    private void loadImages() {
-        heart = new ImageIcon("assets\\hearth.png").getImage();
-        Ghost.image = new ImageIcon("assets\\ghost.png").getImage();
-        Pacman.up = new ImageIcon("assets\\up.gif").getImage();
-        Pacman.down = new ImageIcon("assets\\down.gif").getImage();
-        Pacman.left = new ImageIcon("assets\\left.gif").getImage();
-        Pacman.right = new ImageIcon("assets\\right.gif").getImage();
+    private void loadImages() throws FileNotFoundException {
+        if(!(new File("PacmanClient\\assets\\").exists())){
+            throw new FileNotFoundException("Assets missing");
+        }
+
+        heart = new ImageIcon("PacmanClient\\assets\\hearth.png").getImage();
+        Ghost.image = new ImageIcon("PacmanClient\\assets\\ghost.png").getImage();
+        Pacman.up = new ImageIcon("PacmanClient\\assets\\up.gif").getImage();
+        Pacman.down = new ImageIcon("PacmanClient\\assets\\down.gif").getImage();
+        Pacman.left = new ImageIcon("PacmanClient\\assets\\left.gif").getImage();
+        Pacman.right = new ImageIcon("PacmanClient\\assets\\right.gif").getImage();
 
     }
 

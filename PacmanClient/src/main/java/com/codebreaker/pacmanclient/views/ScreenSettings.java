@@ -1,4 +1,4 @@
-package pacman.views;
+package com.codebreaker.pacmanclient.views;
 
 import java.awt.Dimension;
 import java.awt.Font;
