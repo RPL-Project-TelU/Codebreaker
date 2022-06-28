@@ -2,11 +2,12 @@ package com.codebreaker.pacmanclient.controllers;
 
 import com.codebreaker.pacmanclient.services.PacmanService;
 import com.codebreaker.pacmanclient.views.PacmanView;
+import java.io.FileNotFoundException;
 
 public class PacmanController {
     private PacmanService service;
 
-    public PacmanController() {
+    public PacmanController() throws FileNotFoundException {
         service = new PacmanService();
         new PacmanView(this);
     }

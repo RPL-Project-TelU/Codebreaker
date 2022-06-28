@@ -13,6 +13,7 @@ import javax.swing.Timer;
 
 import com.codebreaker.pacmanclient.controllers.PacmanController;
 import com.codebreaker.pacmanclient.models.*;
+import java.util.logging.Logger;
 
 public class PacmanView extends JPanel implements ActionListener {
     // mvc stuff
@@ -26,8 +27,8 @@ public class PacmanView extends JPanel implements ActionListener {
         this.ctrl = ctrl;
         try {
             loadImages();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(PacmanView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         initVariables();
         addKeyListener(new TAdapter());
