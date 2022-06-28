@@ -1,0 +1,10 @@
+spring:
+    datasource:
+        url: jdbc:oracle:thin:@localhost:1521:ORCL
+        username: APPGUE
+        password: PASSWORD
+        driver-class-name: oracle.jdbc.OracleDriver
+    jpa:
+        show-sql: true
+        hibernate:
+            ddl-auto: create-drop
