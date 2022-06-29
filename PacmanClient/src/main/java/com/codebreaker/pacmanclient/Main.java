@@ -9,7 +9,14 @@ import javax.swing.UnsupportedLookAndFeelException;
 public class Main {
     public static void main(String[] args) {
         try {
+            // Pilih theme yang mau dipakai, uncomment salah satu line dibawah untuk
+            // melihat theme berubah
+            
+            //UIManager.setLookAndFeel("com.formdev.flatlaf.FlatLightLaf");
+            //UIManager.setLookAndFeel("com.formdev.flatlaf.FlatIntelliJLaf");
+            //UIManager.setLookAndFeel("com.formdev.flatlaf.FlatDarculaLaf");
             UIManager.setLookAndFeel("com.formdev.flatlaf.FlatDarkLaf");
+
         } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | UnsupportedLookAndFeelException ex) {
             System.out.println(ex);
         }
