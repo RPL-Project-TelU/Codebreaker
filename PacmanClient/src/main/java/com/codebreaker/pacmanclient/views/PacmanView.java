@@ -100,7 +100,7 @@ public class PacmanView extends JPanel implements ActionListener {
 
         // check semua blok
         while (i < ScreenSettings.N_BLOCKS * ScreenSettings.N_BLOCKS && finished) {
-            System.out.println(state[i]);
+            // System.out.println(state[i]);
             // kalau ada yang blom kosong, finished jadi false
             if ((state[i] & 48) != 0) {
                 finished = false;
@@ -120,7 +120,7 @@ public class PacmanView extends JPanel implements ActionListener {
             if (ctrl.getCurrentSpeed() < ctrl.getMaxSpeed()) {
                 ctrl.addCurrentSpeed(1);
             }
-            System.out.println("game is successfully finished");
+            
             ctrl.initLevel();
         }
     }
