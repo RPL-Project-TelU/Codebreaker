@@ -63,7 +63,6 @@ public class PacmanService {
     }
 
     public void initLevel() {
-        System.out.println("initLevel() called!");
         int i;
 
         for (i = 0; i < ScreenSettings.N_BLOCKS * ScreenSettings.N_BLOCKS; i++) {
@@ -95,7 +94,6 @@ public class PacmanService {
                 // Add score
                 score++;
 
-                System.out.println(screenData[indexOfPacmanPosition]);
             }
 
             if (req_dx != 0 || req_dy != 0) {
