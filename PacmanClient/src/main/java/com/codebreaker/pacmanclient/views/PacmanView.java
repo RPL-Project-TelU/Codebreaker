@@ -13,6 +13,7 @@ import javax.swing.Timer;
 
 import com.codebreaker.pacmanclient.controllers.PacmanController;
 import com.codebreaker.pacmanclient.models.*;
+import java.util.logging.Logger;
 
 public class PacmanView extends JPanel implements ActionListener {
     // mvc stuff
@@ -26,8 +27,8 @@ public class PacmanView extends JPanel implements ActionListener {
         this.ctrl = ctrl;
         try {
             loadImages();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(PacmanView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         initVariables();
         addKeyListener(new TAdapter());
@@ -95,10 +96,13 @@ public class PacmanView extends JPanel implements ActionListener {
 
         int i = 0;
         boolean finished = true;
+        short[] state = ctrl.getScreenData();
 
+        // check semua blok
         while (i < ScreenSettings.N_BLOCKS * ScreenSettings.N_BLOCKS && finished) {
-
-            if ((ctrl.getScreenData()[i]) != 0) {
+            // System.out.println(state[i]);
+            // kalau ada yang blom kosong, finished jadi false
+            if ((state[i] & 48) != 0) {
                 finished = false;
             }
 
@@ -116,7 +120,7 @@ public class PacmanView extends JPanel implements ActionListener {
             if (ctrl.getCurrentSpeed() < ctrl.getMaxSpeed()) {
                 ctrl.addCurrentSpeed(1);
             }
-
+            
             ctrl.initLevel();
         }
     }
@@ -147,6 +151,7 @@ public class PacmanView extends JPanel implements ActionListener {
 
         short i = 0;
         int x, y;
+        short[] state = ctrl.getScreenData();
 
         for (y = 0; y < ScreenSettings.SCREEN_SIZE; y += ScreenSettings.BLOCK_SIZE) {
             for (x = 0; x < ScreenSettings.SCREEN_SIZE; x += ScreenSettings.BLOCK_SIZE) {
@@ -160,29 +165,29 @@ public class PacmanView extends JPanel implements ActionListener {
 
                 }
 
-                if ((ctrl.getScreenData()[i] & 1) != 0) {
+                if ((state[i] & 1) != 0) {
                     g2d.drawLine(x, y, x, y + ScreenSettings.BLOCK_SIZE - 1);
                 }
 
-                if ((ctrl.getScreenData()[i] & 2) != 0) {
+                if ((state[i] & 2) != 0) {
                     g2d.drawLine(x, y, x + ScreenSettings.BLOCK_SIZE - 1, y);
                 }
 
-                if ((ctrl.getScreenData()[i] & 4) != 0) {
+                if ((state[i] & 4) != 0) {
                     g2d.drawLine(x + ScreenSettings.BLOCK_SIZE - 1, y, x + ScreenSettings.BLOCK_SIZE - 1,
                             y + ScreenSettings.BLOCK_SIZE - 1);
                 }
 
-                if ((ctrl.getScreenData()[i] & 8) != 0) {
+                if ((state[i] & 8) != 0) {
                     g2d.drawLine(x, y + ScreenSettings.BLOCK_SIZE - 1, x + ScreenSettings.BLOCK_SIZE - 1,
                             y + ScreenSettings.BLOCK_SIZE - 1);
                 }
 
-                if ((ctrl.getScreenData()[i] & 16) != 0) {
+                if ((state[i] & 16) != 0) {
                     g2d.setColor(new Color(255, 255, 255));
                     g2d.fillOval(x + 10, y + 10, 6, 6);
                 }
-
+                //System.out.println(state[15+7]);
                 i++;
             }
         }
