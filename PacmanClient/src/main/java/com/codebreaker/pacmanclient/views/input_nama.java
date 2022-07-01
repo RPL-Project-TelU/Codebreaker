@@ -2,11 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package pacman.views;
+package com.codebreaker.views;
 
 import javax.swing.table.DefaultTableModel;
 
-import pacman.services.PacmanService;
+import com.codebreaker.services.PacmanService;
 
 /**
  *
