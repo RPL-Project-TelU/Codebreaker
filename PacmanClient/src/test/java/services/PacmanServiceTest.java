@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit5TestClass.java to edit this template
  */
-package com.codebreaker.services;
+package services;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.AfterAll;
@@ -10,9 +10,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
-import com.codebreaker.models.Ghost;
-import com.codebreaker.models.Level;
-import com.codebreaker.models.Pacman;
+import com.codebreaker.pacmanclient.models.Ghost;
+import com.codebreaker.pacmanclient.models.Level;
+import com.codebreaker.pacmanclient.models.Pacman;
+import com.codebreaker.pacmanclient.services.PacmanService;
 
 /**
  *

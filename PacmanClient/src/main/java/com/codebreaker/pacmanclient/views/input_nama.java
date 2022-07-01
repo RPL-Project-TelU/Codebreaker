@@ -2,11 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.codebreaker.views;
+package com.codebreaker.pacmanclient.views;
 
 import javax.swing.table.DefaultTableModel;
 
-import com.codebreaker.services.PacmanService;
+import com.codebreaker.pacmanclient.services.PacmanService;
 
 /**
  *
@@ -38,7 +38,7 @@ public class input_nama extends javax.swing.JFrame {
         tblData = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.HIDE_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 0));
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
