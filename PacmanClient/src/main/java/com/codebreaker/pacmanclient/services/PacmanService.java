@@ -7,6 +7,8 @@ import com.codebreaker.pacmanclient.models.Level;
 import com.codebreaker.pacmanclient.models.Pacman;
 import com.codebreaker.pacmanclient.views.ScreenSettings;
 
+import com.codebreaker.pacmanclient.views.input_nama;
+
 public class PacmanService {
     private boolean inGame = false;
     private boolean dying = false;
@@ -50,7 +52,8 @@ public class PacmanService {
 
         if (lives == 0) {
             inGame = false;
-
+            input_nama nama = new input_nama();
+            nama.setVisible(true);
         }
     }
 
