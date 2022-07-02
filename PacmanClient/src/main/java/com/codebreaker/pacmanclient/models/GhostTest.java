@@ -1,22 +1,23 @@
 package pacman.models;
 
 import static org.junit.Assert.assertEquals;
-
+import pacmanlogic.*;
+import java.util.Arrays;
 import org.junit.Test;
 
 public class GhostTest {
     @Test
-    public void testEquals1() {
+    public void Ghost() {
         assertEquals(expected, actual);
     }
 
     @Test
-    public void testEquals2() {
+    public void Equals() {
         assertEquals(expected, actual);
     }
 
     @Test
-    public void testEquals3() {
+    public void hashCode() {
         assertEquals(expected, actual);
     }
 
