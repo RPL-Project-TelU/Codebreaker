@@ -1,12 +1,12 @@
-package com.codebreaker.pacmanclient.models;
+package model;
 
-import static org.junit.Assert.assertEquals;
-import org.junit.Test;
-import pacmanlogic.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
 import java.util.Arrays;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class LevelTest {
+    /*
     @Test
     public void levels() {
         levels l = new levels();
@@ -27,4 +27,6 @@ public class LevelTest {
         p.load();
         assertEquals("Load Pacman Game", 2, p.getLoad())
     }
-)
+     */
+
+}

@@ -1,11 +1,11 @@
-package pacman.models;
+package model;
 
-import static org.junit.Assert.assertEquals;
-import pacmanlogic.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.Arrays;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class GhostTest {
+    /*
     @Test
     public void Ghost() {
         assertEquals(expected, actual);
@@ -30,4 +30,5 @@ public class GhostTest {
     public void testToString() {
         assertEquals(expected, actual);
     }
+    */
 }
