@@ -1,5 +1,8 @@
-package com.codebreaker.pacmanclient.services;
+package service;
+
 import com.codebreaker.pacmanclient.models.Ghost;
+import com.codebreaker.pacmanclient.services.PacmanService;
+
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 

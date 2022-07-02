@@ -1,4 +1,4 @@
-package com.codebreaker.pacmanclient.models;
+package model;
 
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;

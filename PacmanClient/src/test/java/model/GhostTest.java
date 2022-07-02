@@ -1,4 +1,4 @@
-package pacman.models;
+package model;
 
 import static org.junit.Assert.assertEquals;
 import pacmanlogic.*;
