@@ -1,7 +1,6 @@
 package com.codebreaker.pacmanclient.services;
-
+import com.codebreaker.pacmanclient.models.Ghost;
 import static org.junit.Assert.assertEquals;
-
 import org.junit.Test;
 
 

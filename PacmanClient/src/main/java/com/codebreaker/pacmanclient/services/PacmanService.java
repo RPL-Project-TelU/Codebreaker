@@ -19,7 +19,7 @@ public class PacmanService {
     private int N_GHOSTS = 6;
     private int lives, score;
     private int[] g_req_dx, g_req_dy;
-    private Ghost[] ghosts;
+    protected Ghost[] ghosts;
 
     private Pacman pacman;
     private int req_dx, req_dy;
