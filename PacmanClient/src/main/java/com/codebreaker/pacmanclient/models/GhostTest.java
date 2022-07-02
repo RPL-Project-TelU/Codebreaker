@@ -1,7 +1,6 @@
 package pacman.models;
 
 import static org.junit.Assert.assertEquals;
-import org.junit.Test;
 import pacmanlogic.*;
 import java.util.Arrays;
 import org.junit.Test;
@@ -23,7 +22,7 @@ public class GhostTest {
     }
 
     @Test
-    public void toString() {
+    public void testImage() {
         assertEquals(expected, actual);
     }
 
