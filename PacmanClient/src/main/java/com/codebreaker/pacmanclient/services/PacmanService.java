@@ -30,7 +30,7 @@ public class PacmanService {
     private final int maxSpeed = 6;
 
     private int currentSpeed = 3;
-    private short[] screenData;
+    protected short[] screenData;
 
     public PacmanService() {
         ghosts = new Ghost[MAX_GHOSTS];
