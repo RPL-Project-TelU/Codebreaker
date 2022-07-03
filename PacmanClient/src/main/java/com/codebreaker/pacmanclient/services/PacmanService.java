@@ -26,11 +26,11 @@ public class PacmanService {
 
     private Level level;
 
-    private final int validSpeeds[] = { 1, 2, 3, 4, 6, 8 };
+    protected final int validSpeeds[] = { 1, 2, 3, 4, 6, 8 };
     private final int maxSpeed = 6;
 
     private int currentSpeed = 3;
-    private short[] screenData;
+    protected short[] screenData;
 
     public PacmanService() {
         ghosts = new Ghost[MAX_GHOSTS];
