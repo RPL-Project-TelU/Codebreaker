@@ -30,56 +30,51 @@ public class PacmanServiceTest {
         ps.continueLevel();
         int sesudah = ps.getGhosts()[0].getSpeed();
         
+        // Pengecekan dengan for loop
         for (int i = 0; i < validSpeeds.length; i++){
             if (sesudah >= sebelum && validSpeeds[i] == sesudah){
                 assertEquals(validSpeeds[i], sesudah);
-            }else if (sesudah < sebelum){
-                assertEquals(validSpeeds[i], sesudah);
             }
         }
+
+        // Jika tidak sesuai perkiraan
+        assertEquals(0, sesudah);
     }
 
     @Test
     public void testDecreaseHealth1() {
-        int health = 10;
+        // set health 5 dan game sedang dimainkan (inGame = true)
+        int health = 5;
         ps.setInGame(true);
         ps.setLives(health);
         ps.decreaseHealt();
+
+        // Pacman masih hidup karena helath masih 4
         boolean status = ps.getInGame();
         assertEquals(true, status);
     }
 
     @Test
     public void testDecreaseHealth2() {
-        int health = 1;
+        // set health 5 dan game sedang dimainkan (inGame = true)
+        int health = 5;
         ps.setInGame(true);
         ps.setLives(health);
         ps.decreaseHealt();
+        ps.decreaseHealt();
+        ps.decreaseHealt();
+        ps.decreaseHealt();
+        ps.decreaseHealt();
+
+        // Pacman mati karena health = 0, game tidak dimainkan (inGame = false)
         boolean status = ps.getInGame();
         assertEquals(false, status);
     }
 
     @Test
     public void testInitLevel() {
-        final int[][] levels = {
-            {
-                    19, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 18, 22,
-                    17, 16, 16, 16, 16, 24, 16, 16, 16, 16, 16, 16, 16, 16, 20,
-                    25, 24, 24, 24, 28, 0, 17, 16, 16, 16, 16, 16, 16, 16, 20,
-                    0, 0, 0, 0, 0, 0, 17, 16, 16, 16, 16, 16, 16, 16, 20,
-                    19, 18, 18, 18, 18, 18, 16, 16, 16, 16, 24, 24, 24, 24, 20,
-                    17, 16, 16, 16, 16, 16, 16, 16, 16, 20, 0, 0, 0, 0, 21,
-                    17, 16, 16, 16, 16, 16, 16, 16, 16, 20, 0, 0, 0, 0, 21,
-                    17, 16, 16, 16, 24, 16, 16, 16, 16, 20, 0, 0, 0, 0, 21,
-                    17, 16, 16, 20, 0, 17, 16, 16, 16, 16, 18, 18, 18, 18, 20,
-                    17, 24, 24, 28, 0, 25, 24, 24, 16, 16, 16, 16, 16, 16, 20,
-                    21, 0, 0, 0, 0, 0, 0, 0, 17, 16, 16, 16, 16, 16, 20,
-                    17, 18, 18, 22, 0, 19, 18, 18, 16, 16, 16, 16, 16, 16, 20,
-                    17, 16, 16, 20, 0, 17, 16, 16, 16, 16, 16, 16, 16, 16, 20,
-                    17, 16, 16, 20, 0, 17, 16, 16, 16, 16, 16, 16, 16, 16, 20,
-                    25, 24, 24, 24, 26, 24, 24, 24, 24, 24, 24, 24, 24, 24, 28
-            }
-        };
+        // Ambil data levels
+        int[][] levels = Level.levels;
 
         // Convert ke array 1D karena ScreenData bertipe 1D
         short[] isiLevel = new short[225];
@@ -93,7 +88,7 @@ public class PacmanServiceTest {
 
     @Test
     public void testMoveGhosts() {
-
+        
     }
 
     @Test
