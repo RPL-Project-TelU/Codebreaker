@@ -33,6 +33,47 @@ Game Pacman merupakan game yang melegenda. Semua orang pasti pernah mendengar ap
 
 
 
+## FAQ
+
+#### Kak, kok server saya error "Failed to configure a DataSource: 'url' attribute is not specified and no embedded datasource could be configured."?
+
+Pastikan di pacman-server/src/main/resource sudah terdapat application.yaml yang berisi info database kalian.
+
+Format isi application.yaml adalah sebagai berikut
+
+```
+spring:
+    datasource:
+        url: [url database]
+        username: [username database]
+        password: [password database]
+        driver-class-name: [driver database]
+    jpa:
+        show-sql: true
+        hibernate:
+            ddl-auto: create-drop
+```
+
+silahkan mengganti url database, username database, password database, dan driver database sesuai dengan database yang kalian gunakan.
+
+berikut adalah contoh pengisian application.yaml menggunakan database oracle
+
+```
+spring:
+    datasource:
+        url: jdbc:oracle:thin:@localhost:1521:ORCL
+        username: admin
+        password: admin
+        driver-class-name: oracle.jdbc.OracleDriver
+    jpa:
+        show-sql: true
+        hibernate:
+            ddl-auto: create-drop
+```
+
+
+
+
 ## Authors
 Kelompok Codebreaker
 
