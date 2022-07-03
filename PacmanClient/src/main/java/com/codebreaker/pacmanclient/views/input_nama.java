@@ -141,7 +141,7 @@ public class input_nama extends javax.swing.JFrame {
         PacmanService services = new PacmanService();
 
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
-        // TODO add your handling code here:
+        btnSimpan.setEnabled(false);
         tbl.addRow(new Object[]{
             txtNama.getText(),services.getScore()
         });
