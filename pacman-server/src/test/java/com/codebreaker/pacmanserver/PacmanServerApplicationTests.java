@@ -15,7 +15,16 @@ class PacmanServerApplicationTests {
 	private LeaderBoardSubmissionRepository leaderBoardSubmissionRepository;
 
 	@Test
-	void contextLoads() throws Exception{
+	public void contextLoads() throws Exception{
 		assertThat(leaderBoardSubmissionRepository).isNotNull();
+	}
+
+	@Test
+	public void applicationContextLoaded() {
+	}
+
+	@Test
+	public void applicationContextTest() {
+	    PacmanServerApplication.main(new String[] {});
 	}
 }
