@@ -532,3 +532,4 @@ replay_pid*
 
 # VS Code
 .vscode/
+/dist/
